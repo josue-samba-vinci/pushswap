@@ -115,12 +115,66 @@ void	push_b(t_stack **stack_a, t_stack **stack_b)
 {
 	int size;
 	int chunk_size;
+	int chunk_min;
+	int chunk_max;
+	int index;
+	int count;
+	int pushed;
+	int rotation;
 	t_stack *current;
 
 	size = stack_size(*stack_a);
+	pushed = 0;
 	chunk_size = ft_sqrt(size);
+	chunk_min = 0;
+	chunk_max = chunk_size;
+	index = 0;
+	count = 0;
+	current = *stack_a;
 	while (current)
 	{
-		
+		if (current->value >= chunk_min && current->value < chunk_max)
+		{
+			rotation = size - index;
+			if (index > size / 2)
+			{
+				while(rotation > 0)
+				{
+					reverse_rotate(stack_a, 'a');
+					rotation--;
+				}
+			}
+			else
+			{
+				while (index > 0)
+				{
+					rotate(stack_a, 'a');
+					index--;
+				}
+			}
+			push(stack_a, stack_b, 'b');
+			pushed = 1;
+			size = stack_size(*stack_a);
+			count++;
+			current = *stack_a;
+			index = 0;
+		}
+		if (pushed == 0)
+		{
+			current = current->next;
+			index++;
+		}
+		if (pushed == 1)
+		{
+			current = *stack_a;
+			index = 0;
+			pushed = 0;
+		}
+		if (count == chunk_size)
+		{
+			chunk_min += chunk_size;
+			chunk_max += chunk_size;
+			count = 0;
+		}
 	}
 }
