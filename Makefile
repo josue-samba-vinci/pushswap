@@ -26,6 +26,7 @@ SRCS		:=	src/main.c \
 				src/utils/stack_size.c \
 				src/utils/ft_strncmp.c \
 				src/utils/ft_memset.c \
+				src/utils/index_stack.c \
 
 
 OBJ			:= $(SRCS:.c=.o)

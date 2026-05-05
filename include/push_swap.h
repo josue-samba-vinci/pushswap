@@ -57,6 +57,7 @@ int		ft_atoi(const char *nptr);
 int		stack_size(t_stack *stack);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 int		parse_flags(t_global *global, char **argv);
+int 	*extract(t_stack **stack);
 char	**ft_split(char const *s, char c);
 t_stack	*ft_lstnew(int value);
 t_stack	*ft_lstlast(t_stack *lst);
@@ -75,5 +76,7 @@ void	medium_sort(t_stack **stack_a, t_stack **stack_b, t_count *count);
 void	simple_sort(t_stack **stack_a, t_stack **stack_b, t_count *count);
 void	*ft_memset(void *b, int c, size_t len);
 void	print_bench(t_count *count, float disorder, int strat);
+void	sort_tab(int *tab, int size);
+void	index_stack(t_stack **stack);
 
 #endif
