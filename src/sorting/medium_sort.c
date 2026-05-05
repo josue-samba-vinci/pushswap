@@ -111,14 +111,14 @@ static int	find_max_pos_b(t_stack *stack_b)
 	return (pos);
 }
 
-void	push_b(t_stack **stack_a, t_stack **stack_b)
+void	push_b(t_stack **stack_a, t_stack **stack_b, t_count *count)
 {
 	int size;
 	int chunk_size;
 	int chunk_min;
 	int chunk_max;
 	int index;
-	int count;
+	int chunk_count;
 	int pushed;
 	int rotation;
 	t_stack *current;
@@ -129,11 +129,10 @@ void	push_b(t_stack **stack_a, t_stack **stack_b)
 	chunk_min = 0;
 	chunk_max = chunk_size;
 	index = 0;
-	count = 0;
+	chunk_count = 0;
 	current = *stack_a;
 	while (current)
 	{
-<<<<<<< HEAD
 		if (current->value >= chunk_min && current->value < chunk_max)
 		{
 			rotation = size - index;
@@ -141,7 +140,7 @@ void	push_b(t_stack **stack_a, t_stack **stack_b)
 			{
 				while(rotation > 0)
 				{
-					reverse_rotate(stack_a, 'a');
+					reverse_rotate(stack_a, count, 'a');
 					rotation--;
 				}
 			}
@@ -149,14 +148,14 @@ void	push_b(t_stack **stack_a, t_stack **stack_b)
 			{
 				while (index > 0)
 				{
-					rotate(stack_a, 'a');
+					rotate(stack_a, count, 'a');
 					index--;
 				}
 			}
-			push(stack_a, stack_b, 'b');
+			push(stack_a, stack_b, count, 'b');
 			pushed = 1;
 			size = stack_size(*stack_a);
-			count++;
+			chunk_count++;
 			current = *stack_a;
 			index = 0;
 		}
@@ -171,13 +170,46 @@ void	push_b(t_stack **stack_a, t_stack **stack_b)
 			index = 0;
 			pushed = 0;
 		}
-		if (count == chunk_size)
+		if (chunk_count == chunk_size)
 		{
 			chunk_min += chunk_size;
 			chunk_max += chunk_size;
-			count = 0;
+			chunk_count = 0;
 		}
-=======
->>>>>>> 7edcdb2915432082f1c1dc2ee56907a10a04d024
 	}
+}
+
+void push_a(t_stack **stack_a, t_stack **stack_b, t_count *count)
+{
+	int	pos_max;
+	int	rotation;
+	int size;
+
+	while (*stack_b)
+	{
+		size = stack_size(*stack_b);
+		pos_max = find_max_pos_b(*stack_b);
+		if (pos_max > size / 2)
+		{
+			rotation = size - pos_max;
+			while(rotation > 0)
+			{
+				reverse_rotate(stack_b, count, 'b');
+				rotation--;
+			}
+		}
+		else
+		{
+			while (pos_max-- > 0)
+				rotate(stack_b, count, 'b');
+		}
+		push(stack_b, stack_a, count, 'a');
+	}
+}
+
+void	medium_sort(t_stack **stack_a, t_stack **stack_b, t_count *count)
+{
+	index_stack(stack_a);
+	push_b(stack_a, stack_b, count);
+	push_a(stack_a, stack_b, count);
 }
