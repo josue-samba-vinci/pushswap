@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-void	ft_putnbr(int n, int *res)
+void	ft_putnbr(int n, int *res, int fd)
 {
 	long	nbl;
 	char	c;
@@ -25,8 +25,8 @@ void	ft_putnbr(int n, int *res)
 		nbl *= -1;
 	}
 	if (nbl >= 10)
-		ft_putnbr((int)(nbl / 10), res);
+		ft_putnbr((int)(nbl / 10), res, fd);
 	c = (nbl % 10) + 48;
-	write(1, &c, 1);
+	write(fd, &c, 1);
 	(*res)++;
 }

@@ -12,11 +12,18 @@
 
 #include "push_swap.h"
 
-void	swap_a_b(t_stack *stack_a, t_stack *stack_b)
+static void	write_and_calculate(t_count *count)
 {
-	swap(stack_a, ' ');
-	swap(stack_b, ' ');
-	ft_putstr("ss", 1);
+	ft_printf(1, "ss\n");
+	count->ss++;
+	count->total++;
+}
+
+void	swap_a_b(t_stack *stack_a, t_stack *stack_b, t_count *count)
+{
+	swap(stack_a, count, ' ');
+	swap(stack_b, count, ' ');
+	write_and_calculate(count);
 }
 // t_stack *new_node(int value)
 // {

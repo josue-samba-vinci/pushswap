@@ -12,7 +12,23 @@
 
 #include "push_swap.h"
 
-void	reverse_rotate(t_stack **stack, char c)
+static void	write_and_calculate(t_count *count, char c)
+{
+	if (c == 'a')
+	{
+		ft_printf(1, "rra\n");
+		count->rra++;
+		count->total++;
+	}
+	else if (c == 'b')
+	{
+		ft_printf(1, "rrb\n");
+		count->rrb++;
+		count->total++;
+	}
+}
+
+void	reverse_rotate(t_stack **stack, t_count *count, char c)
 {
 	t_stack	*top;
 	t_stack	*before_bottom;
@@ -30,10 +46,7 @@ void	reverse_rotate(t_stack **stack, char c)
 	*stack = bottom;
 	bottom->next = top;
 	before_bottom->next = NULL;
-	if (c == 'a')
-		ft_putstr("rra", 1);
-	else if (c == 'b')
-		ft_putstr("rrb", 1);
+	write_and_calculate(count, c);
 }
 
 // t_stack *new_node(int value)

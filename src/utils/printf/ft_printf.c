@@ -11,28 +11,29 @@
 /* ************************************************************************** */
 #include "ft_printf.h"
 
-static int	handle_case_letter(char c, va_list args, int *res)
+static int	handle_case_letter(char c, va_list args, int *res, int fd)
 {
 	if (c == 'i' || c == 'd')
-		ft_putnbr((int) va_arg(args, int), res);
+		ft_putnbr((int) va_arg(args, int), res, fd);
 	else if (c == 's')
-		ft_putstr((char *) va_arg(args, char *), res);
+		ft_putstr((char *) va_arg(args, char *), res, fd);
 	else if (c == 'c')
-		ft_putchar((char) va_arg(args, int), res);
+		ft_putchar((char) va_arg(args, int), res, fd);
 	else if (c == 'u')
-		ft_putnbr_unsigned((unsigned long) va_arg(args, unsigned long), res);
+		ft_putnbr_unsigned((unsigned long) va_arg(args, unsigned long),
+			res, fd);
 	else if (c == 'x' || c == 'X')
-		ft_putnbr_base((unsigned long)va_arg(args, unsigned int), c, res);
+		ft_putnbr_base((unsigned long)va_arg(args, unsigned int), c, res, fd);
 	else if (c == 'p')
-		ft_putnbr_base((unsigned long)va_arg(args, void *), c, res);
+		ft_putnbr_base((unsigned long)va_arg(args, void *), c, res, fd);
 	else if (c == '%')
-		ft_putchar('%', res);
+		ft_putchar('%', res, fd);
 	else
 		return (0);
 	return (1);
 }
 
-int	ft_printf(const char *str, ...)
+int	ft_printf(int fd, const char *str, ...)
 {
 	va_list	args;
 	int		i;
@@ -47,14 +48,14 @@ int	ft_printf(const char *str, ...)
 		if (str[i] == '%')
 		{
 			i++;
-			handled_case = handle_case_letter(str[i], args, &res);
+			handled_case = handle_case_letter(str[i], args, &res, fd);
 			if (handled_case > 0)
 				i++;
 			else
-				ft_putchar('%', &res);
+				ft_putchar('%', &res, fd);
 			continue ;
 		}
-		ft_putchar(str[i++], &res);
+		ft_putchar(str[i++], &res, fd);
 	}
 	va_end(args);
 	return (res);

@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include "./utils/printf/ft_printf.h"
 
 static int	is_sorted(t_stack *stack_a)
 {
@@ -28,27 +29,9 @@ static int	is_sorted(t_stack *stack_a)
 		min = current->value;
 		current = current->next;
 	}
-	ft_putstr("\n", 1);
+	ft_printf(1, "\n");
 	return (1);
 }
-// static void	handle_flags(char **argv, t_stack **stack_a, t_stack **stack_b, int i)
-// {
-// 	if (argv[1][0] == '-' && argv[1][1] == '-')
-// 	{
-// 		if (argv[1] == "--simple")
-// 			simple_sort(&stack_a, &stack_b);
-// 		else if (argv[1] == "--medium")
-// 			medium_sort(&stack_a, &stack_b);
-// 		else if (argv[1] == "--complex")
-// 			complex_sort(&stack_a, &stack_b);
-// 		else if (argv[1] == "--adaptative")
-// 		{
-// 			compute_disorder(*stack_a);
-// 		}
-// 		else if (argv[1] == "--bench")
-// 			bench(argv[2]);
-// 	}
-// }
 
 static void	print_stack(t_stack *stack, char *name)
 {
@@ -72,32 +55,48 @@ static void	print_stack(t_stack *stack, char *name)
 	printf("----------------\n");
 }
 
+static void	launch_algo(t_global *global, float disorder)
+{
+	if (global->algo == 1)
+		simple_sort(&global->stack_a, &global->stack_b, &global->count);
+	else if (global->algo == 2)
+		medium_sort(&global->stack_a, &global->stack_b, &global->count);
+	else if (global->algo == 3)
+		complex_sort(&global->stack_a, &global->stack_b, &global->count);
+	else if (global->algo == 4 || global->algo == 0)
+	{
+		if (disorder < 0.2)
+			simple_sort(&global->stack_a, &global->stack_b, &global->count);
+		else if (disorder >= 0.2 && disorder < 0.5)
+			medium_sort(&global->stack_a, &global->stack_b, &global->count);
+		else if (disorder >= 0.5)
+			complex_sort(&global->stack_a, &global->stack_b, &global->count);
+	}
+}
+
 int	main(int argc, char **argv)
 {
-	t_stack	**stack_a;
-	t_stack	**stack_b;
-	char	**tab;
-	int		i;
+	t_global	global;
+	int			i;
+	float		disorder;
 
-	stack_a = NULL;
-	stack_b = NULL;
-	i = 1;
+	disorder = 0;
+	ft_memset(&global, 0, sizeof(t_global));
 	if (argc == 1)
 		return (0);
-	// LAUNCH HANDLE FLAGS
-	while (argv[i])
-	{
-		tab = ft_split(argv[i], ' ');
-		if(valid_arguments(stack_a, tab) == 0)
-		{
-			free(tab);
-			return (0);
-		}
-		i++;
-	}
-	if (is_sorted(*stack_a) == 1)
+	i = parse_flags(&global, argv);
+	if (parse_arguments(i, argv, &global) == 0
+		|| is_sorted(global.stack_a) == 1)
 		return (0);
-	print_stack(*stack_a, "A");
-	print_stack(*stack_b, "B");
-	printf("Disorder : %.2f\n", compute_disorder(*stack_a));
+	print_stack(global.stack_a, "A");
+	print_stack(global.stack_b, "B");
+	printf("global algo number : %d\n", global.algo);
+	if (global.algo == 4 || global.algo == 0 || global.bench == 1)
+		disorder = compute_disorder(global.stack_a);
+	launch_algo(&global, disorder);
+	if (global.bench == 1)
+		print_bench(&global.count, disorder, global.algo);
+	print_stack(global.stack_a, "A");
+	print_stack(global.stack_b, "B");
+	printf("Disorder : %.2f\n", disorder);
 }

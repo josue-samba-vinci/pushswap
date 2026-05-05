@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmattela <tmattela@student.42belgium.be>   #+#  +:+       +#+        */
+/*   By: tmattela <tmattela@student.42belgium.com>  #+#  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026-05-01 12:29:21 by tmattela          #+#    #+#             */
-/*   Updated: 2026-05-01 12:29:21 by tmattela         ###   ########.fr       */
+/*   Created: 2026-04-07 09:08:29 by tmattela          #+#    #+#             */
+/*   Updated: 2026-04-07 09:08:29 by tmattela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "push_swap.h"
 
-void	ft_putstr(char *s, int fd)
+void	*ft_memset(void *b, int c, size_t len)
 {
-	int	i;
+	unsigned char	*ptr;
+	unsigned char	uc;
+	size_t			i;
 
 	i = 0;
-	while (s[i])
+	ptr = b;
+	uc = (unsigned char)c;
+	while (i < len)
 	{
-		write(fd, &s[i], 1);
+		ptr[i] = uc;
 		i++;
 	}
-	write(fd, "\n", 1);
+	return (b);
 }

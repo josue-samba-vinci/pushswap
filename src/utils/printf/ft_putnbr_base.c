@@ -12,19 +12,20 @@
 
 #include "ft_printf.h"
 
-static void	ft_putnbr_custom(unsigned long nbl, char *base,
-			unsigned long base_len, int *res)
+static void	ft_putnbr_custom(unsigned long nbl, char *base, int *res, int fd)
 {
-	char	c;
+	char			c;
+	unsigned long	base_len;
 
+	base_len = 16;
 	if (nbl >= base_len)
-		ft_putnbr_custom(nbl / base_len, base, base_len, res);
+		ft_putnbr_custom(nbl / base_len, base, res, fd);
 	c = base[nbl % base_len];
-	write(1, &c, 1);
+	write(fd, &c, 1);
 	(*res)++;
 }
 
-void	ft_putnbr_base(unsigned long nbr, char c, int *res)
+void	ft_putnbr_base(unsigned long nbr, char c, int *res, int fd)
 {
 	char	*base;
 
@@ -41,11 +42,11 @@ void	ft_putnbr_base(unsigned long nbr, char c, int *res)
 	{
 		if (!nbr)
 		{
-			ft_putstr("(nil)", res);
+			ft_putstr("(nil)", res, fd);
 			return ;
 		}
-		ft_putchar('0', res);
-		ft_putchar('x', res);
+		ft_putchar('0', res, fd);
+		ft_putchar('x', res, fd);
 	}
-	ft_putnbr_custom((unsigned long)nbr, base, 16, res);
+	ft_putnbr_custom((unsigned long)nbr, base, res, fd);
 }

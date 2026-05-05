@@ -9,10 +9,7 @@
 /*   Updated: 2026-04-28 09:51:09 by tmattela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "push_swap.h"
-
-
 
 static int	parsing_data(char *argv)
 {
@@ -43,7 +40,8 @@ static int	check_duplicates(t_stack *stack_a, int nb)
 	}
 	return (1);
 }
-void	free_stack(t_stack **stack)
+
+static void	free_stack(t_stack **stack)
 {
 	t_stack	*current;
 	t_stack	*next;
@@ -58,7 +56,7 @@ void	free_stack(t_stack **stack)
 	*stack = NULL;
 }
 
-int	valid_arguments(t_stack **stack_a, char **argv)
+static int	valid_arguments(t_stack **stack_a, char **argv)
 {
 	int		i;
 	int		res;
@@ -70,10 +68,27 @@ int	valid_arguments(t_stack **stack_a, char **argv)
 		if (check_duplicates(*stack_a, res) == 0)
 		{
 			free_stack(stack_a);
-			ft_putstr("Error\n", 1);
+			ft_printf(2, "Error\n");
 			return (0);
 		}
 		ft_lstadd_back(stack_a, ft_lstnew(res));
+		i++;
+	}
+	return (1);
+}
+
+int	parse_arguments(int i, char **argv, t_global *global)
+{
+	char		**tab;
+
+	while (argv[i])
+	{
+		tab = ft_split(argv[i], ' ');
+		if (valid_arguments(&global->stack_a, tab) == 0)
+		{
+			free(tab);
+			return (0);
+		}
 		i++;
 	}
 	return (1);

@@ -12,7 +12,23 @@
 
 #include "push_swap.h"
 
-void	swap(t_stack *stack, char c)
+static void	write_and_calculate(t_count *count, char c)
+{
+	if (c == 'a')
+	{
+		ft_printf(1, "sa\n");
+		count->sa++;
+		count->total++;
+	}
+	else if (c == 'b')
+	{
+		ft_printf(1, "sb\n");
+		count->sb++;
+		count->total++;
+	}
+}
+
+void	swap(t_stack *stack, t_count *count, char c)
 {
 	int	temp_content;
 
@@ -21,11 +37,7 @@ void	swap(t_stack *stack, char c)
 	temp_content = stack->value;
 	stack->value = stack->next->value;
 	stack->next->value = temp_content;
-	if (c == 'a')
-		ft_putstr("sa", 1);
-	else if (c == 'b')
-		ft_putstr("sb", 1);
-	return ;
+	write_and_calculate(count, c);
 }
 
 // t_stack *new_node(int value)

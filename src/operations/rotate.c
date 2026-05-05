@@ -12,7 +12,23 @@
 
 #include "push_swap.h"
 
-void	rotate(t_stack **stack, char c)
+static void	write_and_calculate(t_count *count, char c)
+{
+	if (c == 'a')
+	{
+		ft_printf(1, "ra\n");
+		count->ra++;
+		count->total++;
+	}
+	else if (c == 'b')
+	{
+		ft_printf(1, "rb\n");
+		count->rb++;
+		count->total++;
+	}
+}
+
+void	rotate(t_stack **stack, t_count *count, char c)
 {
 	int		temp_content;
 	t_stack	*current;
@@ -27,10 +43,7 @@ void	rotate(t_stack **stack, char c)
 		current = current->next;
 	}
 	current->value = temp_content;
-	if (c == 'a')
-		ft_putstr("ra", 1);
-	else if (c == 'b')
-		ft_putstr("rb", 1);
+	write_and_calculate(count, c);
 }
 
 // t_stack *new_node(int value)

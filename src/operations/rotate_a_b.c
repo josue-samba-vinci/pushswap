@@ -12,11 +12,18 @@
 
 #include "push_swap.h"
 
-void	rotate_a_b(t_stack **stack_a, t_stack **stack_b)
+static void	write_and_calculate(t_count *count)
 {
-	rotate(stack_a, ' ');
-	rotate(stack_b, ' ');
-	ft_putstr("rr", 1);
+	ft_printf(1, "rr\n");
+	count->rr++;
+	count->total++;
+}
+
+void	rotate_a_b(t_stack **stack_a, t_stack **stack_b, t_count *count)
+{
+	rotate(stack_a, count, ' ');
+	rotate(stack_b, count, ' ');
+	write_and_calculate(count);
 }
 
 // t_stack *new_node(int value)

@@ -37,32 +37,34 @@ static int	find_min_pos(t_stack *stack_a)
 	return (pos);
 }
 
-void	simple_sort(t_stack **stack_a, t_stack **stack_b)
+void	simple_sort(t_stack **stack_a, t_stack **stack_b, t_count *count)
 {
 	int	size;
 	int	pos;
+	int	rra_count;
 
+	ft_printf(1, "Simple sorting\n");
 	size = stack_size(*stack_a);
-	while ((size--) > 1)
+	while ((size) > 1)
 	{
 		pos = find_min_pos(*stack_a);
-		if (pos > (size + 1) / 2)
+		if (pos <= size / 2)
 		{
-			while ((size - pos++) >= 1)
-				reverse_rotate(stack_a, 'a');
+			while ((pos-- > 0))
+				rotate(stack_a, count, 'a');
 		}
 		else
 		{
-			while ((pos-- > 0))
-				rotate(stack_a, 'a');
+			rra_count = size - pos;
+			while (rra_count-- > 0)
+				reverse_rotate(stack_a, count, 'a');
 		}
-		push(stack_a, stack_b, 'a');
-		// print_stack(*stack_a, "B");
-		// print_stack(*stack_b, "B");
+		push(stack_a, stack_b, count, 'b');
+		size--;
 	}
 	size = stack_size(*stack_b);
 	while ((size--) > 0)
-		push(stack_b, stack_a, 'b');
+		push(stack_b, stack_a, count, 'a');
 }
 // #include <stdio.h>
 // void    print_stack(t_stack *stack, char *name)
