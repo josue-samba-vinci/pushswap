@@ -111,71 +111,71 @@ static int	find_max_pos_b(t_stack *stack_b)
 	return (pos);
 }
 
+static int	find_chunk_pos(t_stack *stack, int min, int max)
+{
+	int	i;
+
+	i = 0;
+	while (stack)
+	{
+		if (stack->value >= min && stack->value < max)
+			return (i);
+		stack = stack->next;
+		i++;
+	}
+	return (-1);
+}
+
+static void	rotate_to_top(t_stack **stack_a, t_count *count, int index, int size)
+{
+	int	rotation;
+
+	if (index > size / 2)
+	{
+		rotation = size - index;
+		while (rotation-- > 0)
+			reverse_rotate(stack_a, count, 'a');
+	}
+	else
+	{
+		while (index-- > 0)
+			rotate(stack_a, count, 'a');
+	}
+}
+
+static void	advance_chunk(int *min, int *max, int *count, int chunk_size)
+{
+	*min += chunk_size;
+	*max += chunk_size;
+	*count = 0;
+}
+
 void	push_b(t_stack **stack_a, t_stack **stack_b, t_count *count)
 {
-	int size;
-	int chunk_size;
-	int chunk_min;
-	int chunk_max;
-	int index;
-	int chunk_count;
-	int pushed;
-	int rotation;
-	t_stack *current;
+	int	size;
+	int	chunk_size;
+	int	chunk_min;
+	int	chunk_max;
+	int	chunk_count;
+	int	index;
 
 	size = stack_size(*stack_a);
-	pushed = 0;
 	chunk_size = ft_sqrt(size);
 	chunk_min = 0;
 	chunk_max = chunk_size;
-	index = 0;
 	chunk_count = 0;
-	current = *stack_a;
-	while (current)
+	while (*stack_a)
 	{
-		if (current->value >= chunk_min && current->value < chunk_max)
+		index = find_chunk_pos(*stack_a, chunk_min, chunk_max);
+		if (index >= 0)
 		{
-			rotation = size - index;
-			if (index > size / 2)
-			{
-				while(rotation > 0)
-				{
-					reverse_rotate(stack_a, count, 'a');
-					rotation--;
-				}
-			}
-			else
-			{
-				while (index > 0)
-				{
-					rotate(stack_a, count, 'a');
-					index--;
-				}
-			}
+			rotate_to_top(stack_a, count, index, size);
 			push(stack_a, stack_b, count, 'b');
-			pushed = 1;
-			size = stack_size(*stack_a);
+			size--;
 			chunk_count++;
-			current = *stack_a;
-			index = 0;
 		}
-		if (pushed == 0)
-		{
-			current = current->next;
-			index++;
-		}
-		if (pushed == 1)
-		{
-			current = *stack_a;
-			index = 0;
-			pushed = 0;
-		}
-		if (chunk_count == chunk_size)
-		{
-			chunk_min += chunk_size;
-			chunk_max += chunk_size;
-			chunk_count = 0;
-		}
+		if (chunk_count == chunk_size || index < 0)
+			advance_chunk(&chunk_min, &chunk_max, &chunk_count, chunk_size);
 	}
 }
 
