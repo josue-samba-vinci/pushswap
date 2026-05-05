@@ -80,6 +80,7 @@ int	main(int argc, char **argv)
 	int			i;
 	float		disorder;
 
+	disorder = 0;
 	ft_memset(&global, 0, sizeof(t_global));
 	if (argc == 1)
 		return (0);
@@ -89,7 +90,8 @@ int	main(int argc, char **argv)
 		return (0);
 	print_stack(global.stack_a, "A");
 	print_stack(global.stack_b, "B");
-	if (global.algo == 4 || global.bench == 1)
+	printf("global algo number : %d\n", global.algo);
+	if (global.algo == 4 || global.algo == 0 || global.bench == 1)
 		disorder = compute_disorder(global.stack_a);
 	launch_algo(&global, disorder);
 	if (global.bench == 1)

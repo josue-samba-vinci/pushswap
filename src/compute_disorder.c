@@ -32,31 +32,41 @@ static int	*stack_to_array(t_stack *stack_a, int size)
 	return (arr);
 }
 
-float	compute_disorder(t_stack *stack_a)
+static float	count_mistakes(int *arr, int size)
 {
 	int	mistakes;
 	int	total_pairs;
 	int	i;
 	int	j;
-	int	*arr;
 
 	mistakes = 0;
 	total_pairs = 0;
 	i = 0;
-	arr = stack_to_array(stack_a, stack_size(stack_a));
-	if (!arr)
-		return (0.0);
-	while (i < stack_size(stack_a))
+	while (i < size)
 	{
 		j = i + 1;
-		while (j < stack_size(stack_a))
+		while (j < size)
 		{
-			total_pairs += 1;
+			total_pairs++;
 			if (arr[i] > arr[j])
-				mistakes += 1;
+				mistakes++;
 			j++;
 		}
 		i++;
 	}
-	return ((float)(mistakes / total_pairs));
+	return ((float)mistakes / total_pairs);
+}
+float	compute_disorder(t_stack *stack_a)
+{
+	int		*arr;
+	int		size;
+	float	disorder;
+
+	size = stack_size(stack_a);
+	arr = stack_to_array(stack_a, size);
+	if (!arr)
+		return (0.0);
+	disorder = count_mistakes(arr, size);
+	free(arr);
+	return (disorder);
 }
