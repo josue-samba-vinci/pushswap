@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include "./utils/printf/ft_printf.h"
 
 static int	is_sorted(t_stack *stack_a)
 {
