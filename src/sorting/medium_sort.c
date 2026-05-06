@@ -12,108 +12,29 @@
 
 #include "push_swap.h"
 
-int	ft_sqrt(int nb)
-{
-	int	i;
-
-	i = 0;
-	if (nb < 0)
-		return (0);
-	while ((i + 1) * (i + 1) <= nb)
-		i++;
-	return (i);
-}
-
-static int	find_max_pos_b(t_stack *stack_b)
-{
-	int		max;
-	int		pos;
-	int		i;
-	t_stack	*current;
-
-	current = stack_b;
-	max = current->value;
-	i = 0;
-	pos = 0;
-	while (current)
-	{
-		if (current->value > max)
-		{
-			max = current->value;
-			pos = i;
-		}
-		current = current->next;
-		i++;
-	}
-	return (pos);
-}
-
-static int	find_chunk_pos(t_stack *stack, int min, int max)
-{
-	int	i;
-
-	i = 0;
-	while (stack)
-	{
-		if (stack->value >= min && stack->value < max)
-			return (i);
-		stack = stack->next;
-		i++;
-	}
-	return (-1);
-}
-//pareil pour le simple 
-static void	rotate_to_top(t_stack **stack_a, t_count *count, int index,
-		int size)
-{
-	int	rotation;
-
-	if (index > size / 2)
-	{
-		rotation = size - index;
-		while (rotation-- > 0)
-			reverse_rotate(stack_a, count, 'a');
-	}
-	else
-	{
-		while (index-- > 0)
-			rotate(stack_a, count, 'a');
-	}
-}
-
-static void	advance_chunk(int *min, int *max, int *count, int chunk_size)
-{
-	*min += chunk_size;
-	*max += chunk_size;
-	*count = 0;
-}
-
 void	push_b(t_stack **stack_a, t_stack **stack_b, t_count *count)
 {
-	int	size;
-	int	chunk_size;
-	int	chunk_min;
-	int	chunk_max;
-	int	chunk_count;
-	int	index;
+	int		size;
+	int		index;
+	t_chunk	chunk;
 
 	size = stack_size(*stack_a);
-	chunk_size = ft_sqrt(size);
-	chunk_min = 0;
-	chunk_max = chunk_size;
-	chunk_count = 0;
+	chunk.size = ft_sqrt(size);
+	chunk.min = 0;
+	chunk.max = chunk.size;
+	chunk.count = 0;
 	while (*stack_a)
 	{
-		index = find_chunk_pos(*stack_a, chunk_min, chunk_max);
+		index = find_chunk_pos(*stack_a, chunk.min, chunk.max);
 		if (index >= 0)
 		{
 			rotate_to_top(stack_a, count, index, size);
 			push(stack_a, stack_b, count, 'b');
 			size--;
-			chunk_count++;
+			chunk.count++;
 		}
-		if (chunk_count == chunk_size || index < 0)
-			advance_chunk(&chunk_min, &chunk_max, &chunk_count, chunk_size);
+		if (chunk.count == chunk.size || index < 0)
+			advance_chunk(&chunk.min, &chunk.max, &chunk.count, chunk.size);
 	}
 }
 

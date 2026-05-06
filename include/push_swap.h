@@ -50,12 +50,23 @@ typedef struct s_global
 	int		algo;
 }	t_global;
 
+typedef struct s_chunk
+{
+	int	size;
+	int	min;
+	int	max;
+	int	count;
+}	t_chunk;
+
 int		ft_isdigit(int c);
 int		parse_arguments(int i, char **argv, t_global *global);
 int		ft_atoi(const char *nptr);
 int		stack_size(t_stack *stack);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 int		parse_flags(t_global *global, char **argv, int argc);
+int		ft_sqrt(int nb);
+int		find_max_pos_b(t_stack *stack_b);
+int		find_chunk_pos(t_stack *stack, int min, int max);
 int		*extract(t_stack **stack);
 char	**ft_split(char const *s, char c);
 t_stack	*ft_lstnew(int value);
