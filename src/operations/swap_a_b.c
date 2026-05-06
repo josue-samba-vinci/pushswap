@@ -19,7 +19,7 @@ static void	write_and_calculate(t_count *count)
 	count->total++;
 }
 
-void	swap_a_b(t_stack *stack_a, t_stack *stack_b, t_count *count)
+void	swap_a_b(t_stack **stack_a, t_stack **stack_b, t_count *count)
 {
 	swap(stack_a, count, ' ');
 	swap(stack_b, count, ' ');
