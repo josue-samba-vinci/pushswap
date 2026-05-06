@@ -11,20 +11,23 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
-static int	parsing_data(char *argv)
+static int	parsing_data(char *argv, int *res)
 {
 	int	i;
-	int	res;
 
 	i = 0;
+	if (!argv[i])
+		return (0);
+	if (argv[i] == '+' || argv[i] == '-')
+		i++;
 	while (argv[i])
 	{
 		if (ft_isdigit(argv[i]) == 0)
-			return (-1);
+			return (0);
 		i++;
 	}
-	res = ft_atoi(argv);
-	return (res);
+	*res = ft_atoi(argv);
+	return (1);
 }
 
 static int	check_duplicates(t_stack *stack_a, int nb)
@@ -64,8 +67,8 @@ static int	valid_arguments(t_stack **stack_a, char **argv)
 	i = 0;
 	while (argv[i])
 	{
-		res = parsing_data(argv[i]);
-		if (check_duplicates(*stack_a, res) == 0 || res == -1)
+		if (parsing_data(argv[i], &res) == 0
+			|| check_duplicates(*stack_a, res) == 0)
 		{
 			free_stack(stack_a);
 			ft_printf(2, "Error\n");
