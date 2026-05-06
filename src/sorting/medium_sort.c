@@ -62,7 +62,7 @@ static int	find_chunk_pos(t_stack *stack, int min, int max)
 	}
 	return (-1);
 }
-
+//pareil pour le simple 
 static void	rotate_to_top(t_stack **stack_a, t_count *count, int index,
 		int size)
 {
