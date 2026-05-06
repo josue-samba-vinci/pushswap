@@ -47,10 +47,8 @@ void	simple_sort(t_stack **stack_a, t_stack **stack_b, t_count *count)
 	{
 		pos = find_min_pos(*stack_a);
 		if (pos <= size / 2)
-		{
 			while ((pos-- > 0))
 				rotate(stack_a, count, 'a');
-		}
 		else
 		{
 			rra_count = size - pos;

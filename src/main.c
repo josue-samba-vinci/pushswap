@@ -31,7 +31,6 @@ static int	is_sorted(t_stack *stack_a)
 		min = current->value;
 		current = current->next;
 	}
-	ft_printf(1, "\n");
 	return (0);
 }
 
@@ -70,8 +69,10 @@ int	main(int argc, char **argv)
 		return (0);
 	if (global.algo == 4 || global.algo == 0 || global.bench == 1)
 		disorder = compute_disorder(global.stack_a);
-	launch_algo(&global, disorder);
+	if (stack_size(global.stack_a) > 3)
+		launch_algo(&global, disorder);
+	else
+		three_sort(global.stack_a, &global.count);
 	if (global.bench == 1)
 		print_bench(&global.count, disorder, global.algo);
-	printf("Disorder : %.2f\n", disorder);
 }

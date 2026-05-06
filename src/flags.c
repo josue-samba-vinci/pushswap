@@ -59,7 +59,10 @@ static char	*get_strategy(int strat, float disorder)
 
 void	print_bench(t_count *count, float disorder, int strat)
 {
-	ft_printf(2, "[bench] Disorder     : %.2f\n", disorder);
+	int	percentage;
+
+	percentage = disorder * 100;
+	ft_printf(2, "[bench] Disorder     : %d.00%\n", percentage);
 	ft_printf(2, "[bench] Strategy     : %s\n", get_strategy(strat, disorder));
 	ft_printf(2, "[bench] Total ops    : %d\n", count->total);
 	ft_printf(2, "[bench] ra: %d  rb: %d  rr: %d\n", count->ra,
