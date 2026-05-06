@@ -28,15 +28,15 @@ static void	write_and_calculate(t_count *count, char c)
 	}
 }
 
-void	swap(t_stack *stack, t_count *count, char c)
+void	swap(t_stack **stack, t_count *count, char c)
 {
 	int	temp_content;
 
-	if (stack == NULL || stack->next == NULL)
+	if (stack == NULL || (*stack)->next == NULL)
 		return ;
-	temp_content = stack->value;
-	stack->value = stack->next->value;
-	stack->next->value = temp_content;
+	temp_content = (*stack)->value;
+	(*stack)->value = (*stack)->next->value;
+	(*stack)->next->value = temp_content;
 	write_and_calculate(count, c);
 }
 

@@ -43,7 +43,7 @@ void	simple_sort(t_stack **stack_a, t_stack **stack_b, t_count *count)
 	int	rra_count;
 
 	size = stack_size(*stack_a);
-	while ((size) > 1)
+	while ((size) > 3)
 	{
 		pos = find_min_pos(*stack_a);
 		if (pos <= size / 2)
@@ -60,6 +60,7 @@ void	simple_sort(t_stack **stack_a, t_stack **stack_b, t_count *count)
 		push(stack_a, stack_b, count, 'b');
 		size--;
 	}
+	three_sort(*stack_a, count);
 	size = stack_size(*stack_b);
 	while ((size--) > 0)
 		push(stack_b, stack_a, count, 'a');

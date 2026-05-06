@@ -17,6 +17,7 @@ SRCS		:=	src/main.c \
 				src/sorting/simple_sort.c \
 				src/sorting/medium_sort.c \
 				src/sorting/complex_sort.c \
+				src/sorting/three_sort.c \
 				src/utils/ft_atoi.c \
 				src/utils/ft_isdigit.c \
 				src/utils/ft_lstadd_back.c \
