@@ -67,6 +67,9 @@ int		parse_flags(t_global *global, char **argv, int argc);
 int		ft_sqrt(int nb);
 int		find_max_pos_b(t_stack *stack_b);
 int		find_chunk_pos(t_stack *stack, int min, int max);
+int		ft_sqrt(int nb);
+int		find_max_pos_b(t_stack *stack_b);
+int		find_chunk_pos(t_stack *stack, int min, int max);
 int		*extract(t_stack **stack);
 char	**ft_split(char const *s, char c);
 t_stack	*ft_lstnew(int value);
@@ -88,5 +91,8 @@ void	*ft_memset(void *b, int c, size_t len);
 void	print_bench(t_count *count, float disorder, int strat);
 void	sort_tab(int *tab, int size);
 void	index_stack(t_stack **stack);
+void	rotate_to_top(t_stack **stack_a, t_count *count, int index, 
+	int size);
+void	advance_chunk(int *min, int *max, int *count, int chunk_size);
 
 #endif

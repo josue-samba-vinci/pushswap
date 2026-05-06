@@ -48,7 +48,7 @@ int	find_max_pos_b(t_stack *stack_b)
 	return (pos);
 }
 
-static int	find_chunk_pos(t_stack *stack, int min, int max)
+int	find_chunk_pos(t_stack *stack, int min, int max)
 {
 	int	i;
 
@@ -63,7 +63,7 @@ static int	find_chunk_pos(t_stack *stack, int min, int max)
 	return (-1);
 }
 
-static void	rotate_to_top(t_stack **stack_a, t_count *count, int index,
+void	rotate_to_top(t_stack **stack_a, t_count *count, int index,
 		int size)
 {
 	int	rotation;
@@ -81,7 +81,7 @@ static void	rotate_to_top(t_stack **stack_a, t_count *count, int index,
 	}
 }
 
-static void	advance_chunk(int *min, int *max, int *count, int chunk_size)
+void	advance_chunk(int *min, int *max, int *count, int chunk_size)
 {
 	*min += chunk_size;
 	*max += chunk_size;
