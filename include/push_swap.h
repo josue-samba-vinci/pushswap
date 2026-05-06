@@ -82,12 +82,13 @@ void	reverse_rotate_a_b(t_stack **stack_a, t_stack **stack_b,
 void	rotate(t_stack **stack, t_count *count, char c);
 void	rotate_a_b(t_stack **stack_a, t_stack **stack_b, t_count *count);
 void	push(t_stack **stack_a, t_stack **stack_b, t_count *count, char c);
-void	swap(t_stack *stack, t_count *count, char c);
+void	swap(t_stack **stack, t_count *count, char c);
 void	swap_a_b(t_stack *stack_a, t_stack *stack_b, t_count *count);
 void	complex_sort(t_stack **stack_a, t_stack **stack_b, t_count *count);
 void	medium_sort(t_stack **stack_a, t_stack **stack_b, t_count *count);
 void	simple_sort(t_stack **stack_a, t_stack **stack_b, t_count *count);
 void	*ft_memset(void *b, int c, size_t len);
+void	three_sort(t_stack *stack, t_count *count);
 void	print_bench(t_count *count, float disorder, int strat);
 void	sort_tab(int *tab, int size);
 void	index_stack(t_stack **stack);
