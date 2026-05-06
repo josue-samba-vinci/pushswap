@@ -55,7 +55,7 @@ int		parse_arguments(int i, char **argv, t_global *global);
 int		ft_atoi(const char *nptr);
 int		stack_size(t_stack *stack);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
-int		parse_flags(t_global *global, char **argv);
+int		parse_flags(t_global *global, char **argv, int argc);
 int		*extract(t_stack **stack);
 char	**ft_split(char const *s, char c);
 t_stack	*ft_lstnew(int value);

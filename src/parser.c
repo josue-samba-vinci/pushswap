@@ -65,7 +65,7 @@ static int	valid_arguments(t_stack **stack_a, char **argv)
 	while (argv[i])
 	{
 		res = parsing_data(argv[i]);
-		if (check_duplicates(*stack_a, res) == 0)
+		if (check_duplicates(*stack_a, res) == 0 || res == -1)
 		{
 			free_stack(stack_a);
 			ft_printf(2, "Error\n");
@@ -80,7 +80,11 @@ static int	valid_arguments(t_stack **stack_a, char **argv)
 int	parse_arguments(int i, char **argv, t_global *global)
 {
 	char		**tab;
-
+	if(!argv[i])
+	{
+		ft_printf(2, "Error\n");
+		return (0);
+	}
 	while (argv[i])
 	{
 		tab = ft_split(argv[i], ' ');

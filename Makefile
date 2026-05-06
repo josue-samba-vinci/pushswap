@@ -38,7 +38,7 @@ $(PRINTF_LIB):
 	make -C $(PRINTF_DIR)
 
 $(OBJ): %.o: %.c
-	gcc $(CFLAGS) -c $< -o $@
+	gcc -g $(CFLAGS) -c $< -o $@
 
 $(NAME): $(OBJ)
 	gcc $(CFLAGS) $(OBJ) $(PRINTF_LIB) -o $(NAME)

@@ -41,7 +41,7 @@ void	complex_sort(t_stack **stack_a, t_stack **stack_b, t_count *count)
 		i = 0;
 		while (i < size)
 		{
-			if ((((*stack_a)->value >> bits) & 1) == 1)
+			if ((((*stack_a)->value >> bits) & 1) == 1) // 000100 
 				rotate(stack_a, count, 'a');
 			else
 				push(stack_a, stack_b, count, 'b');

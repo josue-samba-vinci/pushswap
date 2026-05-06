@@ -24,7 +24,7 @@ static void	handle_flags(char *s, t_global *global)
 		global->algo = 4;
 }
 
-int	parse_flags(t_global *global, char **argv)
+int	parse_flags(t_global *global, char **argv, int argc)
 {
 	int	i;
 
@@ -34,7 +34,7 @@ int	parse_flags(t_global *global, char **argv)
 		global->bench++;
 		i++;
 	}
-	if (ft_strncmp(argv[i], "--", 2) == 0)
+	if (argc > 2 && ft_strncmp(argv[i], "--", 2) == 0)
 	{
 		handle_flags(argv[i], global);
 		i++;
@@ -59,11 +59,14 @@ static char	*get_strategy(int strat, float disorder)
 
 void	print_bench(t_count *count, float disorder, int strat)
 {
-	ft_printf(2, "Disorder     : %.2f\n", disorder);
-	ft_printf(2, "Strategy     : %s\n", get_strategy(strat, disorder));
-	ft_printf(2, "Total ops    : %d\n", count->total);
-	ft_printf(2, "ra: %d  rb: %d  rr: %d\n", count->ra, count->rb, count->rr);
-	ft_printf(2, "pa: %d  pb: %d\n", count->pa, count->pb);
-	ft_printf(2, "sa: %d  sb: %d  ss: %d\n", count->sa, count->sb, count->ss);
-	ft_printf(2, "rra:%d rrb: %d rrr:%d\n", count->rra, count->rrb, count->rrr);
+	ft_printf(2, "[bench] Disorder     : %.2f\n", disorder);
+	ft_printf(2, "[bench] Strategy     : %s\n", get_strategy(strat, disorder));
+	ft_printf(2, "[bench] Total ops    : %d\n", count->total);
+	ft_printf(2, "[bench] ra: %d  rb: %d  rr: %d\n", count->ra,
+		count->rb, count->rr);
+	ft_printf(2, "[bench] pa: %d  pb: %d\n", count->pa, count->pb);
+	ft_printf(2, "[bench] sa: %d  sb: %d  ss: %d\n", count->sa,
+		count->sb, count->ss);
+	ft_printf(2, "[bench] rra:%d rrb: %d rrr:%d\n", count->rra,
+		count->rrb, count->rrr);
 }

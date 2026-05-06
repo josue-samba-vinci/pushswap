@@ -18,19 +18,21 @@ static int	is_sorted(t_stack *stack_a)
 	int		min;
 	t_stack	*current;
 
+	if(!stack_a)
+		return (0);
 	current = stack_a;
 	min = current->value;
 	while (current)
 	{
 		if (current->value < min)
 		{
-			return (0);
+			return (1);
 		}
 		min = current->value;
 		current = current->next;
 	}
 	ft_printf(1, "\n");
-	return (1);
+	return (0);
 }
 
 static void	print_stack(t_stack *stack, char *name)
@@ -84,15 +86,18 @@ int	main(int argc, char **argv)
 	ft_memset(&global, 0, sizeof(t_global));
 	if (argc == 1)
 		return (0);
-	i = parse_flags(&global, argv);
+	i = parse_flags(&global, argv, argc);
 	if (parse_arguments(i, argv, &global) == 0
-		|| is_sorted(global.stack_a) == 1)
+		|| is_sorted(global.stack_a) == 0)
 		return (0);
 	print_stack(global.stack_a, "A");
 	print_stack(global.stack_b, "B");
-	printf("global algo number : %d\n", global.algo);
 	if (global.algo == 4 || global.algo == 0 || global.bench == 1)
+	{
+		printf("before segfautl\n");
 		disorder = compute_disorder(global.stack_a);
+		printf("after segfautl\n");
+	}
 	launch_algo(&global, disorder);
 	if (global.bench == 1)
 		print_bench(&global.count, disorder, global.algo);
