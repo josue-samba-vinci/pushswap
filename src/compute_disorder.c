@@ -56,6 +56,7 @@ static float	count_mistakes(int *arr, int size)
 	}
 	return ((float)mistakes / total_pairs);
 }
+
 float	compute_disorder(t_stack *stack_a)
 {
 	int		*arr;

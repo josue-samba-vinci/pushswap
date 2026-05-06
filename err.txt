@@ -1,7 +1,0 @@
-Disorder     : %.2f
-Strategy     : Medium / O(n√n)
-Total ops    : 8214
-ra: 5208  rb: 986  rr: 0
-pa: 500  pb: 500
-sa: 0  sb: 0  ss: 0
-rra:0 rrb: 1020 rrr:0

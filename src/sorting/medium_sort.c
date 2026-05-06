@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "push_swap.h"
+#include "push_swap.h"
 
 int	ft_sqrt(int nb)
 {
@@ -23,6 +23,7 @@ int	ft_sqrt(int nb)
 		i++;
 	return (i);
 }
+
 static int	find_max_pos_b(t_stack *stack_b)
 {
 	int		max;
@@ -62,7 +63,8 @@ static int	find_chunk_pos(t_stack *stack, int min, int max)
 	return (-1);
 }
 
-static void	rotate_to_top(t_stack **stack_a, t_count *count, int index, int size)
+static void	rotate_to_top(t_stack **stack_a, t_count *count, int index,
+		int size)
 {
 	int	rotation;
 
@@ -115,11 +117,11 @@ void	push_b(t_stack **stack_a, t_stack **stack_b, t_count *count)
 	}
 }
 
-void push_a(t_stack **stack_a, t_stack **stack_b, t_count *count)
+void	push_a(t_stack **stack_a, t_stack **stack_b, t_count *count)
 {
 	int	pos_max;
 	int	rotation;
-	int size;
+	int	size;
 
 	while (*stack_b)
 	{
@@ -128,7 +130,7 @@ void push_a(t_stack **stack_a, t_stack **stack_b, t_count *count)
 		if (pos_max > size / 2)
 		{
 			rotation = size - pos_max;
-			while(rotation > 0)
+			while (rotation > 0)
 			{
 				reverse_rotate(stack_b, count, 'b');
 				rotation--;

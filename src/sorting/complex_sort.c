@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "push_swap.h"
+#include "push_swap.h"
 
 int	get_max_bits(int max)
 {
@@ -22,15 +22,16 @@ int	get_max_bits(int max)
 	return (bits);
 }
 //ATTENTION check le main correctement mais si complex_sort
-//est appele alors qu il y a que 1 element ou 0 element dans la stack, ca va faire 
+//est appele alors qu il y a que 1 element ou 0 element dans la stack, ca va faire
 //crash get_max_bits avec le size-1 quand j appelle la fonction
+
 void	complex_sort(t_stack **stack_a, t_stack **stack_b, t_count *count)
 {
-	int size;
+	int	size;
 	int	bits;
 	int	i;
 	int	max_bits;
-	
+
 	index_stack(stack_a);
 	bits = 0;
 	size = stack_size(*stack_a);
@@ -42,7 +43,7 @@ void	complex_sort(t_stack **stack_a, t_stack **stack_b, t_count *count)
 		{
 			if ((((*stack_a)->value >> bits) & 1) == 1)
 				rotate(stack_a, count, 'a');
-			else 
+			else
 				push(stack_a, stack_b, count, 'b');
 			i++;
 		}

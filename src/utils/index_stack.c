@@ -10,13 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "push_swap.h"
+#include "push_swap.h"
 
-int *extract(t_stack **stack)
+int	*extract(t_stack **stack)
 {
-	int size;
-	int	i;
-	int	*tab;
+	int		size;
+	int		i;
+	int		*tab;
 	t_stack	*current;
 
 	i = 0;
@@ -38,19 +38,19 @@ void	sort_tab(int *tab, int size)
 {
 	int	i;
 	int	j;
-	int temp;
+	int	temp;
 
 	i = 0;
 	while (i < size)
 	{
 		j = 0;
-		while (j < size - 1 -i)
+		while (j < size - 1 - i)
 		{
-			if (tab[j] > tab[j+1])
+			if (tab[j] > tab[j + 1])
 			{
 				temp = tab[j];
-				tab[j] = tab[j+1];
-				tab[j+1] = temp;
+				tab[j] = tab[j + 1];
+				tab[j + 1] = temp;
 			}
 			j++;
 		}
@@ -60,9 +60,9 @@ void	sort_tab(int *tab, int size)
 
 void	index_stack(t_stack **stack)
 {
-	int *tab;
-	int	size;
-	int	i;
+	int		*tab;
+	int		size;
+	int		i;
 	t_stack	*current;
 
 	i = 0;
@@ -78,7 +78,7 @@ void	index_stack(t_stack **stack)
 			if (tab[i] == current->value)
 			{
 				current->value = i;
-				break;
+				break ;
 			}
 			i++;
 		}

@@ -17,8 +17,7 @@
 # include <stdlib.h>
 # include <limits.h>
 # include <stdio.h>
-#include "../src/utils/printf/ft_printf.h"
-
+# include "../src/utils/printf/ft_printf.h"
 
 typedef struct s_stack
 {
@@ -57,7 +56,7 @@ int		ft_atoi(const char *nptr);
 int		stack_size(t_stack *stack);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 int		parse_flags(t_global *global, char **argv);
-int 	*extract(t_stack **stack);
+int		*extract(t_stack **stack);
 char	**ft_split(char const *s, char c);
 t_stack	*ft_lstnew(int value);
 t_stack	*ft_lstlast(t_stack *lst);
