@@ -64,4 +64,3 @@ void	simple_sort(t_stack **stack_a, t_stack **stack_b, t_count *count)
 	while ((size--) > 0)
 		push(stack_b, stack_a, count, 'a');
 }
-

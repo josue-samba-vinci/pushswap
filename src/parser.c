@@ -80,8 +80,8 @@ static int	valid_arguments(t_stack **stack_a, char **argv)
 int	parse_arguments(int i, char **argv, t_global *global)
 {
 	char		**tab;
-	
-	if(!argv[i])
+
+	if (!argv[i])
 	{
 		ft_printf(2, "Error\n");
 		return (0);

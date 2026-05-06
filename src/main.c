@@ -18,7 +18,7 @@ static int	is_sorted(t_stack *stack_a)
 	int		min;
 	t_stack	*current;
 
-	if(!stack_a)
+	if (!stack_a)
 		return (0);
 	current = stack_a;
 	min = current->value;
@@ -33,28 +33,6 @@ static int	is_sorted(t_stack *stack_a)
 	}
 	ft_printf(1, "\n");
 	return (0);
-}
-
-static void	print_stack(t_stack *stack, char *name)
-{
-	t_stack	*current;
-	int		i;
-
-	current = stack;
-	i = 0;
-	printf("--- Stack %s ---\n", name);
-	if (!current)
-		printf("(vide)\n");
-	while (current != NULL)
-	{
-		if (i == 0)
-			printf("[top] %d\n", current->value);
-		else
-			printf("  [%d] %d\n", i, current->value);
-		current = current->next;
-		i++;
-	}
-	printf("----------------\n");
 }
 
 static void	launch_algo(t_global *global, float disorder)
@@ -90,18 +68,10 @@ int	main(int argc, char **argv)
 	if (parse_arguments(i, argv, &global) == 0
 		|| is_sorted(global.stack_a) == 0)
 		return (0);
-	print_stack(global.stack_a, "A");
-	print_stack(global.stack_b, "B");
 	if (global.algo == 4 || global.algo == 0 || global.bench == 1)
-	{
-		printf("before segfautl\n");
 		disorder = compute_disorder(global.stack_a);
-		printf("after segfautl\n");
-	}
 	launch_algo(&global, disorder);
 	if (global.bench == 1)
 		print_bench(&global.count, disorder, global.algo);
-	print_stack(global.stack_a, "A");
-	print_stack(global.stack_b, "B");
 	printf("Disorder : %.2f\n", disorder);
 }
