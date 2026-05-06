@@ -20,7 +20,7 @@ static void	handle_flags(char *s, t_global *global)
 		global->algo = 2;
 	else if (ft_strncmp(s, "--complex", 9) == 0)
 		global->algo = 3;
-	else if (ft_strncmp(s, "--adaptative", 10) == 0)
+	else if (ft_strncmp(s, "--adaptive", 10) == 0)
 		global->algo = 4;
 }
 
