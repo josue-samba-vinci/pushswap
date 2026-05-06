@@ -28,6 +28,7 @@ SRCS		:=	src/main.c \
 				src/utils/ft_strncmp.c \
 				src/utils/ft_memset.c \
 				src/utils/index_stack.c \
+				src/utils/medium_sort_utils.c \
 
 
 OBJ			:= $(SRCS:.c=.o)
