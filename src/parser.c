@@ -44,21 +44,6 @@ static int	check_duplicates(t_stack *stack_a, int nb)
 	return (1);
 }
 
-static void	free_stack(t_stack **stack)
-{
-	t_stack	*current;
-	t_stack	*next;
-
-	current = *stack;
-	while (current)
-	{
-		next = current->next;
-		free(current);
-		current = next;
-	}
-	*stack = NULL;
-}
-
 static int	valid_arguments(t_stack **stack_a, char **argv)
 {
 	int		i;
@@ -94,9 +79,10 @@ int	parse_arguments(int i, char **argv, t_global *global)
 		tab = ft_split(argv[i], ' ');
 		if (valid_arguments(&global->stack_a, tab) == 0)
 		{
-			free(tab);
+			free_split(tab);
 			return (0);
 		}
+		free_split(tab);
 		i++;
 	}
 	return (1);

@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   medium_sort_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: josamba- <josamba-@student.42belgium.      +#+  +:+       +#+        */
+/*   By: josamba- <josamba-@student.42belgium.be    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/06 15:01:59 by josamba-          #+#    #+#             */
 /*   Updated: 2026/05/06 15:02:01 by josamba-         ###   ########.fr       */

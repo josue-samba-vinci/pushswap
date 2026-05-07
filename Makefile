@@ -27,6 +27,7 @@ SRCS		:=	src/main.c \
 				src/utils/stack_size.c \
 				src/utils/ft_strncmp.c \
 				src/utils/ft_memset.c \
+				src/utils/free_stack.c \
 				src/utils/index_stack.c \
 				src/utils/medium_sort_utils.c \
 
@@ -40,7 +41,7 @@ $(PRINTF_LIB):
 	make -C $(PRINTF_DIR)
 
 $(OBJ): %.o: %.c
-	gcc -g $(CFLAGS) -c $< -o $@
+	gcc $(CFLAGS) -c $< -o $@
 
 $(NAME): $(OBJ)
 	gcc $(CFLAGS) $(OBJ) $(PRINTF_LIB) -o $(NAME)

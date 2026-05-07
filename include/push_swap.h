@@ -87,12 +87,14 @@ void	complex_sort(t_stack **stack_a, t_stack **stack_b, t_count *count);
 void	medium_sort(t_stack **stack_a, t_stack **stack_b, t_count *count);
 void	simple_sort(t_stack **stack_a, t_stack **stack_b, t_count *count);
 void	*ft_memset(void *b, int c, size_t len);
-void	three_sort(t_stack *stack, t_count *count);
+void	three_sort(t_stack **stack, t_count *count);
 void	print_bench(t_count *count, float disorder, int strat);
 void	sort_tab(int *tab, int size);
 void	index_stack(t_stack **stack);
 void	rotate_to_top(t_stack **stack_a, t_count *count, int index,
 			int size);
 void	advance_chunk(int *min, int *max, int *count, int chunk_size);
+void	free_stack(t_stack **stack);
+void	free_split(char **tab);
 
 #endif

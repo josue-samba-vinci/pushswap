@@ -58,7 +58,7 @@ void	simple_sort(t_stack **stack_a, t_stack **stack_b, t_count *count)
 		push(stack_a, stack_b, count, 'b');
 		size--;
 	}
-	three_sort(*stack_a, count);
+	three_sort(stack_a, count);
 	size = stack_size(*stack_b);
 	while ((size--) > 0)
 		push(stack_b, stack_a, count, 'a');

@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   complex_sort.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: josamba- <josamba-@student.42belgium.      +#+  +:+       +#+        */
+/*   By: josamba- <josamba-@student.42belgium.be    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 22:51:41 by josamba-          #+#    #+#             */
 /*   Updated: 2026/05/05 22:51:50 by josamba-         ###   ########.fr       */

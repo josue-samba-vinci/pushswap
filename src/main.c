@@ -65,13 +65,18 @@ int	main(int argc, char **argv)
 	i = parse_flags(&global, argv, argc);
 	if (parse_arguments(i, argv, &global) == 0
 		|| is_sorted(global.stack_a) == 0)
+	{
+		free_stack(&global.stack_a);
 		return (0);
+	}
 	if (global.algo == 4 || global.algo == 0 || global.bench == 1)
 		disorder = compute_disorder(global.stack_a);
 	if (stack_size(global.stack_a) > 3)
 		launch_algo(&global, disorder);
 	else
-		three_sort(global.stack_a, &global.count);
+		three_sort(&global.stack_a, &global.count);
 	if (global.bench == 1)
 		print_bench(&global.count, disorder, global.algo);
+	free_stack(&global.stack_a);
+	free_stack(&global.stack_b);
 }

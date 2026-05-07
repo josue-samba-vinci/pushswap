@@ -28,6 +28,21 @@ int	count_words(char *str, char c)
 	return (count);
 }
 
+void	free_split(char **tab)
+{
+	int	i;
+
+	if (!tab)
+		return ;
+	i = 0;
+	while (tab[i])
+	{
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
+}
+
 int	write_split(char **tab, char *str, char c)
 {
 	int	i;
@@ -76,7 +91,7 @@ char	**ft_split(char const *s, char c)
 		start = tab;
 		while (*tab)
 		{
-			free((*tab));
+			free(*tab);
 			tab++;
 		}
 		free(start);
